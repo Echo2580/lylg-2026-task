@@ -89,8 +89,8 @@ router.delete('/tasks/:id', (req, res) => {
 
 // 任务详情：GET /api/tasks/:id
 router.get('/tasks/:id', (req, res) => {
-  // 调用 getTask
-  const result = getTask(req.params.id);
+  // 调用 getTask，传入当前用户 ID 和任务 ID
+  const result = getTask(req.userId, req.params.id);
   if (result){
     // 返回任务详情
     res.json(result);

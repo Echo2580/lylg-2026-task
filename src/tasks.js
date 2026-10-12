@@ -65,13 +65,14 @@ function deleteTask(userId, id) {
 }
 
 // 显示任务详情
-function getTask(id) {
+function getTask(userId, id) {
   // 先筛选出属于当前用户的任务
-  let result = tasks.filter(t => t.id === Number(id));
-  
-  // 返回当前页的数据
+  let result = tasks.filter(t => t.id === Number(id) && t.userId === userId);
+
+  // 找到则返回该任务，找不到返回 null
   return result.length > 0 ? result[0] : null;
 }
+
 
 // 导出所有任务操作函数
 module.exports = { createTask, listTasks, updateTask, deleteTask, getTask };
